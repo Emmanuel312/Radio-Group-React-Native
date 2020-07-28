@@ -6,7 +6,6 @@ interface Props {
   text: string;
   id: number;
   selected?: number;
-  //   selected: boolean;
 }
 
 const RadioButton: React.FC<Props> = ({ id, text, changeSelect, selected }) => {
@@ -15,7 +14,7 @@ const RadioButton: React.FC<Props> = ({ id, text, changeSelect, selected }) => {
   return (
     <Container onPress={() => changeSelect(id)}>
       <CircleView>{checked && <Circle />}</CircleView>
-      <OptionText>{text}</OptionText>
+      <OptionText checked={checked}>{text}</OptionText>
     </Container>
   );
 };

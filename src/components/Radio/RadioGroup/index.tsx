@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "./styles";
-import RadioButton from "./RadioButton";
+import RadioButton from "../RadioButton";
 
 interface Props {
   onChangeSelect(id: number): void;
@@ -23,5 +23,4 @@ const RadioGroup: React.FC<Props> = ({ children, onChangeSelect }) => {
   return <Container>{renderChildren()}</Container>;
 };
 
-export { RadioButton };
 export default RadioGroup;
