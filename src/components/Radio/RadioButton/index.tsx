@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Container, Circle, OptionText, CircleView } from "./styles";
+import { useRadio } from "../RadioGroup";
 
 interface Props {
-  changeSelect?(id: number): void;
   text: string;
   id: number;
-  selected?: number;
 }
 
-const RadioButton: React.FC<Props> = ({ id, text, changeSelect, selected }) => {
-  const checked = selected === id;
+const RadioButton: React.FC<Props> = ({ id, text }) => {
+  const { onChangeSelect, selected } = useRadio();
+  const checked = useMemo(() => id === selected, [selected]);
+
+  function handleSelect() {
+    onChangeSelect(id);
+  }
 
   return (
-    <Container onPress={() => changeSelect(id)}>
+    <Container onPress={handleSelect}>
       <CircleView>{checked && <Circle />}</CircleView>
       <OptionText checked={checked}>{text}</OptionText>
     </Container>

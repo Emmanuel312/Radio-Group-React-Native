@@ -10,10 +10,10 @@ const Main: React.FC = () => {
 
   return (
     <Container>
-      <RadioGroup onChangeSelect={handleSelect}>
-        <RadioButton id={0} text="Pizza"></RadioButton>
-        <RadioButton id={1} text="Lasagna"></RadioButton>
-        <RadioButton id={2} text="Pasta"></RadioButton>
+      <RadioGroup description="Which do you want to eat?">
+        <RadioButton id={0} text="Pizza" />
+        <RadioButton id={1} text="Lasagna" />
+        <RadioButton id={2} text="Pasta" />
       </RadioGroup>
     </Container>
   );

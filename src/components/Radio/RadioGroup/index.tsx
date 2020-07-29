@@ -1,26 +1,35 @@
-import React, { useState } from "react";
-import { Container } from "./styles";
-import RadioButton from "../RadioButton";
+import React, { useContext, createContext, useState } from "react";
+import { Container, DescriptionText } from "./styles";
 
-interface Props {
+interface RadioContextData {
   onChangeSelect(id: number): void;
+  selected: number;
 }
 
-const RadioGroup: React.FC<Props> = ({ children, onChangeSelect }) => {
+interface Props {
+  children: React.ReactNode;
+  description: string;
+}
+
+const RadioContext = createContext<RadioContextData>({} as RadioContextData);
+
+export const RadioGroup: React.FC = ({ children, description }) => {
   const [selected, setSelected] = useState(-1);
 
-  function changeSelect(id: number) {
+  function onChangeSelect(id: number) {
     setSelected(id);
-    onChangeSelect(id);
   }
 
-  function renderChildren() {
-    return React.Children.map(children, (child) => {
-      return React.cloneElement(child, { changeSelect, selected });
-    });
-  }
-
-  return <Container>{renderChildren()}</Container>;
+  return (
+    <RadioContext.Provider value={{ onChangeSelect, selected }}>
+      <Container>
+        <DescriptionText>{description}</DescriptionText>
+        {children}
+      </Container>
+    </RadioContext.Provider>
+  );
 };
 
-export default RadioGroup;
+export const useRadio = () => {
+  return useContext(RadioContext);
+};

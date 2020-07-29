@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 export const Container = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
-  padding: 20px 10px;
+  padding: 20px 0;
   border-bottom-color: #000;
   border-bottom-width: ${StyleSheet.hairlineWidth}px;
 `;
