@@ -13,7 +13,7 @@ interface Props {
 
 const RadioContext = createContext<RadioContextData>({} as RadioContextData);
 
-export const RadioGroup: React.FC = ({ children, description }) => {
+export const RadioGroup: React.FC<Props> = ({ children, description }) => {
   const [selected, setSelected] = useState(-1);
 
   function onChangeSelect(id: number) {
